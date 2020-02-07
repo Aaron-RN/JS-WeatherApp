@@ -7,5 +7,23 @@
     <title>JS - Weather App</title>
   </head>
   <body>
+    <div id="main" class="container center text-center">
+      <div id="errorBox"></div>
+      <div class="row">
+       <label>City </label>
+       <input id="cityInput" type="text" placeholder="The Bahamas">
+       <button id="cityBtn" class="btn">Search</button>
+      </div>
+      <div class="card center">
+        <div id="overlay" class="hide"></div>
+        <div id="loader" class="hide"></div>
+        <div class="text-center center">
+          <h2 id="city">Test City</h2>
+          <div id="temp">Test Temp</div>
+          <div><img id="icon"></div>
+          <button title="Change temperature format" id="tempConvert" class="active">C</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
