@@ -14,7 +14,7 @@ module.exports = {
         use: [
           'style-loader',
           'postcss-loader',
-          'postcss-loader',
+          'postcss-loader'
         ],
       },
     ],
