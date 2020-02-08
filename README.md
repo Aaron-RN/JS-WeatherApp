@@ -4,7 +4,7 @@ Use everything we’ve been discussing to create a weather forecast site using t
 ![screenshot](./screenshot.png)
 
 ## Live Link
-Live Githack Link: https://raw.githack.com/Aaron-RN/JS-WeatherApp/weather-me-this/dist/index.html
+Live Githack Link: https://raw.githack.com/Aaron-RN/JS-WeatherApp/development/dist/index.html
 
 ## Built With
 
