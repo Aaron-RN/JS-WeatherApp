@@ -1,33 +1,35 @@
 import WeatherDataView from '../views/weatherview';
 
+const APP_ID = '5c5f1a47d3dc27fe0dfca44e22ff94d2';
+
 class WeatherDataModel {
-  constructor(city, appID) {
+  constructor(city) {
+    this.appID = APP_ID;
     this.view = new WeatherDataView(this);
-    this.getWeatherByCity(city, appID);
+    this.getWeatherByCity(city);
   }
 
-  getWeatherByCity(city = this.view.cityInput, appID, fahrenheit = true) {
+  getWeatherByCity(city = this.view.cityInput, fahrenheit = true) {
     this.view.toggleLoad();
-    const jsonString = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appID}`;
-    fetch(jsonString, { mode: 'cors' }).then((e) => {
-      const jsonData = e.json();
-      jsonData.then(data => {
-        if (data.cod === '400') { return; }
+    const jsonString = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.appID}`;
+    fetch(jsonString, { mode: 'cors' })
+      .then((response) => {
+        if (!response.ok) {
+          this.view.toggleLoad();
+          throw new Error("Couldn't find city");
+        }
+        return response.json();
+      })
+      .then((data) => {
         this.mCity = data.name;
-        console.log(this.mCity);
         this.mCondition = data.weather[0].id;
         this.mIconName = this.updateWeatherIcon();
         this.mTemperature = data.main.temp;
         this.view.toggleLoad();
         this.view.render(fahrenheit);
-      }).catch(() => {
-        this.view.renderError("Can't find city...");
-      });
-    })
-      .catch(() => {
-        //        console.log(e);
-        //        console.log('Fetch failed');
-
+      })
+      .catch((error) => {
+        this.view.renderError(error);
       });
   }
 
