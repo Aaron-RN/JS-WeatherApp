@@ -24,34 +24,33 @@ class WeatherDataView {
   getCity() { return this.cityInput.value; }
 
   setCity() {
-    const tempElem = this.tempBtn;
-    const city = this.getCity();
+    const { tempBtn, city } = this;
     if (!city) { this.renderError('City is invalid!'); return; }
     this.renderError('');// render a empty error to clear innerHTML of element
-    const fahrenheit = tempElem.classList.contains('active');
+    const fahrenheit = tempBtn.classList.contains('active');
     this.model.getWeatherByCity(city, fahrenheit);
   }
 
   toggleTempFormat() {
-    const tempElem = this.tempBtn;
-    tempElem.classList.toggle('active');
-    const fahrenheit = tempElem.classList.contains('active');
-    this.render(fahrenheit);
+    const { tempBtn } = this;
+    tempBtn.classList.toggle('active');
+    const fahrenheit = tempBtn.classList.contains('active');
+    this.model.getWeatherByCity(this.model.getCity(), fahrenheit);
   }
 
   renderError(err) {
-    this.errorBox.innerHTML = err;
+    this.errorBox.textContent = err;
   }
 
   render(inFahrenheit = true) {
     const { model } = this;
-    this.cityLabel.innerHTML = model.getCity();
+    this.cityLabel.textContent = model.getCity();
     if (inFahrenheit) {
-      this.tempLabel.innerHTML = model.getTemperature();
-      this.tempBtn.innerHTML = 'C';
+      this.tempLabel.textContent = model.getTemperature();
+      this.tempBtn.textContent = 'C';
     } else {
-      this.tempLabel.innerHTML = model.getTemperature(false);
-      this.tempBtn.innerHTML = 'F';
+      this.tempLabel.textContent = model.getTemperature(false);
+      this.tempBtn.textContent = 'F';
     }
     this.weatherIcon.setAttribute('src', `../src/icons/${model.getIconName()}.png`);
   }

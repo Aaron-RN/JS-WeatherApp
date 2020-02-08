@@ -1,4 +1,5 @@
 const path = require('path');
+// const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: './src/index.js',
@@ -12,7 +13,8 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader',
+          'postcss-loader',
+          'postcss-loader',
         ],
       },
     ],

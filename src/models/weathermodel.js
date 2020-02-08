@@ -9,10 +9,10 @@ class WeatherDataModel {
     this.getWeatherByCity(city);
   }
 
-  getWeatherByCity(city = this.view.cityInput, fahrenheit = true) {
+  getWeatherByCity(city = this.view.cityInput, inFahrenheit = true) {
     this.view.toggleLoad();
-    const jsonString = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.appID}`;
-    fetch(jsonString, { mode: 'cors' })
+    const urlToJSON = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.appID}`;
+    fetch(urlToJSON, { mode: 'cors' })
       .then((response) => {
         if (!response.ok) {
           this.view.toggleLoad();
@@ -20,13 +20,15 @@ class WeatherDataModel {
         }
         return response.json();
       })
-      .then((data) => {
-        this.mCity = data.name;
-        this.mCondition = data.weather[0].id;
+      .then(({ name, weather, main }) => {
+        this.mCity = name;
+        this.mCondition = weather[0].id;
         this.mIconName = this.updateWeatherIcon();
-        this.mTemperature = data.main.temp;
+        const degCelcius = `${Math.round(parseFloat(main.temp) - 273.15)}° C`;
+        const degFahrenheit = `${Math.round(((parseFloat(main.temp) - 273.15) * 1.8) + 32)}° F`;
+        this.mTemperature = inFahrenheit ? degFahrenheit : degCelcius;
         this.view.toggleLoad();
-        this.view.render(fahrenheit);
+        this.view.render(inFahrenheit);
       })
       .catch((error) => {
         this.view.renderError(error);
@@ -63,11 +65,8 @@ class WeatherDataModel {
     return 'dunno';
   }
 
-  getTemperature(inFahrenheit = true) {
-    const celcius = Math.round(parseFloat(this.mTemperature) - 273.15);
-    const fahrenheit = Math.round(((parseFloat(this.mTemperature) - 273.15) * 1.8) + 32);
-    if (inFahrenheit === true) { return `${fahrenheit}° F`; }
-    return `${celcius}° C`;
+  getTemperature() {
+    return this.mTemperature;
   }
 
   getCity() {

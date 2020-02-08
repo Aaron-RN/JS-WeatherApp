@@ -10,8 +10,6 @@ html { box-sizing: border-box; }
 *,
 *::before,
 *::after {
-  -webkit-transition-duration: 0.25s;
-  -moz-transition-duration: 0.25s;
   transition-duration: 0.25s;
 }
 h1,h2,h3{margin: 0;}
@@ -46,9 +44,6 @@ input[type="text"]{
 }
 #tempConvert:hover{
   transform:scale(1.0.5);
-  -moz-transform:scale(1.05);
-  -webkit-transform:scale(1.05);
-  -ms-transform:scale(1.05);
 }
 
 .btn{
@@ -63,9 +58,6 @@ input[type="text"]{
 .btn:hover{
   border-color: goldenrod;
   transform:scale(1.03);
-  -moz-transform:scale(1.03);
-  -webkit-transform:scale(1.03);
-  -ms-transform:scale(1.03);
 }
 
 .card{
@@ -113,28 +105,14 @@ input[type="text"]{
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #e52;
-  width: 120px;
-  height: 120px;
-  -moz-animation: spin 2s linear infinite;
-  -ms-animation: spin 2s linear infinite;
-  -webkit-animation: spin 2s linear infinite;
+  width: 100px;
+  height: 100px;
   animation: spin 2s linear infinite;
 }
 
 .hide {visibility: hidden;}
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-@-moz-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-@-ms-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
