@@ -24,11 +24,11 @@ class WeatherDataView {
   getCity() { return this.cityInput.value; }
 
   setCity() {
-    const { tempBtn, city } = this;
-    if (!city) { this.renderError('City is invalid!'); return; }
+    const { tempBtn, cityInput } = this;
+    if (!cityInput.value) { this.renderError('City is invalid!'); return; }
     this.renderError('');// render a empty error to clear innerHTML of element
     const fahrenheit = tempBtn.classList.contains('active');
-    this.model.getWeatherByCity(city, fahrenheit);
+    this.model.getWeatherByCity(cityInput.value, fahrenheit);
   }
 
   toggleTempFormat() {
