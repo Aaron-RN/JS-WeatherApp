@@ -11,7 +11,8 @@ class WeatherDataModel {
 
   getWeatherByCity(city = this.view.cityInput, inFahrenheit = true) {
     this.view.toggleLoad();
-    const urlToJSON = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.appID}`;
+    let urlToJSON = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.appID}`;
+    urlToJSON = inFahrenheit ? `${urlToJSON}&units=imperial` : `${urlToJSON}&units=metric`;
     fetch(urlToJSON, { mode: 'cors' })
       .then((response) => {
         if (!response.ok) {
@@ -24,9 +25,7 @@ class WeatherDataModel {
         this.mCity = name;
         this.mCondition = weather[0].id;
         this.mIconName = this.updateWeatherIcon();
-        const degCelcius = `${Math.round(parseFloat(main.temp) - 273.15)}° C`;
-        const degFahrenheit = `${Math.round(((parseFloat(main.temp) - 273.15) * 1.8) + 32)}° F`;
-        this.mTemperature = inFahrenheit ? degFahrenheit : degCelcius;
+        this.mTemperature = inFahrenheit ? `${Math.round(main.temp)}° F` : `${Math.round(main.temp)}° C`;
         this.view.toggleLoad();
         this.view.render(inFahrenheit);
       })

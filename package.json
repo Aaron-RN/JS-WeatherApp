@@ -28,13 +28,5 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
-  "dependencies": {
-    "autoprefixer": "^9.7.4",
-    "postcss-cli": "^7.1.0",
-    "postcss-loader": "^3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  "dependencies": {}
 }
