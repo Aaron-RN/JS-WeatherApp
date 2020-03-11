@@ -3,8 +3,7 @@ Use everything we’ve been discussing to create a weather forecast site using t
 
 ![screenshot](./screenshot.png)
 
-## Live Link
-[Live Link can be found here!](https://raw.githack.com/Aaron-RN/JS-WeatherApp/development/dist/index.html)
+## [Live Demo](https://raw.githack.com/Aaron-RN/JS-WeatherApp/development/dist/index.html)
 
 ## Built With
 
