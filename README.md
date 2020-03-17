@@ -9,7 +9,6 @@ Use everything we’ve been discussing to create a weather forecast site using t
 
 - HTML, CSS
 - JavaScript
-- Node.js
 - NPM Webpack
 
 ## Authors
